@@ -11,7 +11,7 @@
 
 1. **Запуск контейнеров:**
    ```bash
-   docker compose up --build
+   docker compose up --build -d
 2. **Запустить установку пакетов:**
    ```bash
    docker exec -it app bash -c "composer install"

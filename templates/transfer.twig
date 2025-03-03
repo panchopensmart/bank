@@ -1,0 +1,57 @@
+{% extends "base.twig" %}
+
+{% block title %}Перевод денег - Онлайн банк{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h2>Перевод денег</h2>
+            </div>
+            <div class="card-body">
+                {% if error %}
+                <div class="alert alert-danger">
+                    {{ error }}
+                </div>
+                {% endif %}
+                
+                <form method="post" action="/transfer">
+                    <div class="mb-3">
+                        <label for="current_balance" class="form-label">Текущий баланс</label>
+                        <input type="text" class="form-control" id="current_balance" value="${{ balance|number_format(2) }}" readonly>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="recipient_id" class="form-label">Получатель</label>
+                        <select class="form-select" id="recipient_id" name="recipient_id" required>
+                            <option value="">Выбрать отправителя</option>
+                            {% for recipient in users %}
+                                {% if recipient.id != user.id %}
+                                <option value="{{ recipient.id }}">{{ recipient.username }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Количество денег</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control" id="amount" name="amount" step="0.01" min="0.01" max="{{ balance }}" required>
+                        </div>
+                    </div>
+                    
+                    {# добавляем токен в форму#}
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                        <a href="/dashboard" class="btn btn-secondary">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

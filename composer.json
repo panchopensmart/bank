@@ -1,5 +1,5 @@
 {
-    "name": "online-bank",
+    "name": "apel/online-bank",
     "description": "Онлайн банк",
     "type": "project",
     "require": {

@@ -15,7 +15,6 @@ COPY . .
 
 RUN touch .
 
-RUN mkdir -p /var/www/html/var/cache/twig && \
-    chmod -R 777 ./
+RUN mkdir -p /var/www/html/var/cache/twig
 
 EXPOSE 9000

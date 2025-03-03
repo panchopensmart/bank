@@ -17,7 +17,7 @@
    docker exec -it app bash -c "composer install"
 3. **Установить миграции:**
    ```bash
-   psql -h localhost -p 5432 -U user -d banking -W -f docker-entrypoint-initdb.d/dump.sql
+   docker exec -it db bash -c "PGPASSWORD=banking_password psql -h localhost -p 5432 -U user -d banking -f /docker-entrypoint-initdb.d/dump.sql"
    
 ### Функционал приложения
 

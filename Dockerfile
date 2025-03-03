@@ -17,3 +17,5 @@ RUN touch .
 
 RUN mkdir -p /var/www/html/var/cache/twig && \
     chmod -R 777 ./
+
+EXPOSE 9000

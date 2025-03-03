@@ -15,7 +15,11 @@
 2. **Запустить установку пакетов:**
    ```bash
    docker exec -it app bash -c "composer install"
-3. **Установить миграции (Если не установились автоматически):**
+3. **Выдать все права на контейнер с приложением**
+   ```bash
+   docker exec -it app bash -c "chmod -R 777 ./"
+
+4. **Если миграции не утановились автоматически, то установить их можно командой:**
    ```bash
    docker exec -it db bash -c "PGPASSWORD=banking_password psql -h localhost -p 5432 -U user -d banking -f /docker-entrypoint-initdb.d/dump.sql"
    

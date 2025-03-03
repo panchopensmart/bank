@@ -14,6 +14,6 @@ WORKDIR /var/www/html
 COPY . .
 
 RUN mkdir -p /var/www/html/var/cache/twig && \
-    chmod -R 775 /var/www/html/var/cache
+    chmod -R 777 ./
     
 EXPOSE 9000
